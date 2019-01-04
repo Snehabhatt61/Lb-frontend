@@ -10,12 +10,14 @@ class Grains extends Component {
         super(props);
         this.state = {
             // isLoading: false
+            key: ' '
         };
     }
     handleSubmit = (values) => {
         console.log('valll', values);
-        // alert("Submit");
-        this.props.submitForm(values, this.successCallback);
+        var setData = JSON.parse(localStorage.getItem("key"));
+        console.log("--------",setData);
+        this.props.submitForm({...values,...setData}, this.successCallback);
     }
     successCallback = (values) => {
         alert("Your data is Saved");
@@ -31,9 +33,9 @@ class Grains extends Component {
         const validate = (values, props) => {
             return sleep(300).then(() => {
                 let errors = {};
-                if (values.price === " ") {
-                    errors.price = "Enter Price";
-                }
+                // if (values.price === " ") {
+                //     errors.price = "Enter Price";
+                // }
                 if (Object.keys(errors).length) {
                     throw errors;
                 }
@@ -50,7 +52,7 @@ class Grains extends Component {
                             {/* <p>LC Screen</p> */}
                             <Formik
                                 initialValues={{
-                                    gluten: ''
+                                    glutenContent: ''
                                 }}
                                 validate={validate}
                                 onSubmit={this.handleSubmit}
@@ -60,20 +62,22 @@ class Grains extends Component {
                                         <div className="form-group form-group-inline d-flexbox">
                                             <label>Gluten Value</label>
                                             <select
-                                                name='glucose'
+                                                name='glutenContent'
                                                 className='form-control form-control-sm'
                                                 onChange={handleChange}
-                                                value={values.glucose}
-                                                placeholder='Glucose'
-                                                id='glucose'
+                                                value={values.glutenContent}
+                                                placeholder='Gluten Content'
+                                                id='glutenContent'
                                             // required
                                             >
-                                                <option value="REF#1">Ship</option>
+                                                <option value="REF#1">REF#1</option>
+                                                <option value="REF#2">REF#2</option>
+                                                <option value="REF#3">REF#3</option>
 
                                             </select>
-                                            {errors.glucose &&
-                                                touched.glucose && (
-                                                    <div>{errors.glucose}</div>
+                                            {errors.glutenContent &&
+                                                touched.glutenContent && (
+                                                    <div>{errors.glutenContent}</div>
                                                 )}
                                         </div>
                                         <div className="form-group form-group-inline d-flexbox">

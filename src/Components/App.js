@@ -15,7 +15,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path={'/'} component={DashboardForm} />
-          <Route exact path={'/crudeOil'} component={CrudeOil} />
+          <Route exact path={'/crudeoil'} component={CrudeOil} />
           <Route exact path={'/coal'} component={Coal} />
           <Route exact path={'/grain'} component={Grains} />
           <Route exact path={'/sugar'} component={Sugar} />

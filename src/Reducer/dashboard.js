@@ -1,4 +1,4 @@
-import { SUBMIT_FORM, SUBMIT_PRICE_FORM } from '../Actions/types';
+import { SUBMIT_FORM } from '../Actions/types';
 
 const INITIAL_STATE = {
     formdata: {},
@@ -7,11 +7,6 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case SUBMIT_FORM:
-            return {
-                ...state,
-                formdata: action.payload,
-            };
-        case SUBMIT_PRICE_FORM:
             return {
                 ...state,
                 formdata: action.payload,

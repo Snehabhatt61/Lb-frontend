@@ -1,6 +1,6 @@
 export default {
     dashboard: "/" ,
-    crudeOil: "/crudeOil",
+    crudeoil: "/crudeoil",
     coal: "/coal",
     grain: "/grain",
     sugar: "/sugar"

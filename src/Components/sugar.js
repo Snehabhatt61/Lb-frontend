@@ -1,10 +1,15 @@
 
 import React, { Component } from 'react';
 import { Formik, Field, Form } from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import { submitForm } from '../Actions/dashboard';
 import { connect } from 'react-redux';
 
+const sugarSchema = Yup.object().shape({
+	glucose: Yup.string()
+		.min(0, "Number must be between 2 to 40 characters.")
+		.max(100, "Number must be between 2 to 40 characters.")
+});
 class Sugar extends Component {
     constructor(props) {
         super(props);
@@ -14,8 +19,9 @@ class Sugar extends Component {
     }
     handleSubmit = (values) => {
         console.log('valll', values);
-        // alert("Submit");
-        this.props.submitForm(values, this.successCallback);
+        var setData = JSON.parse(localStorage.getItem("key"));
+        console.log("--------",setData);
+        this.props.submitForm({...values,...setData}, this.successCallback);
     }
     successCallback = (values) => {
         alert("Your data is Saved");
@@ -52,6 +58,7 @@ class Sugar extends Component {
                                 initialValues={{
                                     glucose: ''
                                 }}
+                                validationSchema={sugarSchema}
                                 validate={validate}
                                 onSubmit={this.handleSubmit}
                                 render={({ errors, touched, resetForm, handleChange, handleBlur, values }) => (
@@ -68,7 +75,8 @@ class Sugar extends Component {
                                                 id='glucose'
                                             // required
                                             >
-                                                <option value="REF#1">Ship</option>
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
 
                                             </select>
                                             {errors.glucose &&

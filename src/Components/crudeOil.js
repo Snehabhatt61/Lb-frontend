@@ -14,8 +14,9 @@ class CrudeOil extends Component {
     }
     handleSubmit = (values) => {
         console.log('valll', values);
-        // alert("Submit");
-        this.props.submitPriceForm(values, this.successCallback);
+        var setData = JSON.parse(localStorage.getItem("key"));
+        console.log("--------",setData);
+        this.props.submitForm({...values,...setData}, this.successCallback);
     }
     successCallback = (values) => {
         alert("Your data is Saved");
@@ -31,9 +32,9 @@ class CrudeOil extends Component {
         const validate = (values, props) => {
             return sleep(300).then(() => {
                 let errors = {};
-                if (values.price === " ") {
-                    errors.price = "Enter Price";
-                }
+                // if (values.price === " ") {
+                //     errors.price = "Enter Price";
+                // }
                 if (Object.keys(errors).length) {
                     throw errors;
                 }
@@ -60,7 +61,7 @@ class CrudeOil extends Component {
                                     <Form
                                     >
                                         <div className="form-group form-group-inline d-flexbox">
-                                            <label>Pricing Period</label>
+                                            <label>Pricing Period  { }</label>
                                             <Field
                                                 name='startDate'
                                                 className='form-control form-control-sm'
@@ -74,7 +75,6 @@ class CrudeOil extends Component {
                                             }
                                         </div>
                                         <div className="form-group form-group-inline d-flexbox">
-                                            {/* <label>Pricing Period</label> */}
                                             <Field
                                                 name='endDate'
                                                 className='form-control form-control-sm'

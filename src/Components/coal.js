@@ -14,8 +14,9 @@ class Coal extends Component {
     }
     handleSubmit = (values) => {
         console.log('valll', values);
-        // alert("Submit");
-        this.props.submitForm(values, this.successCallback);
+        var setData = JSON.parse(localStorage.getItem("key"));
+        console.log("--------",setData);
+        this.props.submitForm({...values,...setData}, this.successCallback);
     }
     successCallback = (values) => {
         alert("Your data is Saved");
@@ -31,9 +32,9 @@ class Coal extends Component {
         const validate = (values, props) => {
             return sleep(300).then(() => {
                 let errors = {};
-                if (values.price === " ") {
-                    errors.price = "Enter Price";
-                }
+                // if (values.price === " ") {
+                //     errors.price = "Enter Price";
+                // }
                 if (Object.keys(errors).length) {
                     throw errors;
                 }
@@ -68,7 +69,9 @@ class Coal extends Component {
                                                 id='calorificValue'
                                             // required
                                             >
-                                                <option value="REF#1">Ship</option>
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
 
                                             </select>
                                             {errors.calorificValue &&

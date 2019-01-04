@@ -16,9 +16,6 @@ class DashboardForm extends Component {
     handleSubmit = async (values) => {
         console.log('valll', values);
         await localStorage.setItem('key', JSON.stringify(values));
-        // await console.log(".............", Routes.values);
-        // alert("Submit");
-        // this.props.submitForm(values, this.successCallback);
         this.handleOnclick(values.commodity);
     }
     handleOnclick = (values) => {
@@ -31,10 +28,8 @@ class DashboardForm extends Component {
         alert("Your data is Saved");
         console.log("success", values);
     }
-    handleChange = async (value) => {
+    handleChange = (value) => {
         console.log(value);
-        // await this.props.history.push(Routes[value]);
-        // await console.log(".............",Routes[value]);
     }
     componentDidMount() {
         this.setState({
@@ -50,12 +45,12 @@ class DashboardForm extends Component {
                 // if (['admin', 'null', 'god'].includes(values.firstName)) {
                 //     errors.firstName = "You can't use 'admin' as your firstname";
                 // }
-                if (values.commodity === " ") {
-                    errors.commodity = "Cannot be null";
-                }
-                if (values.price === " ") {
-                    errors.price = "Enter Price";
-                }
+                // if (values.commodity === " ") {
+                //     errors.commodity = "Cannot be null";
+                // }
+                // if (values.price === " ") {
+                //     errors.price = "Enter Price";
+                // }
 
                 // if (!values.deliveryDate) {
                 //     errors.deliveryDate = 'Field is Required';
@@ -101,8 +96,9 @@ class DashboardForm extends Component {
                                                 value={values.commodity}
                                                 placeholder='Commodity'
                                                 id='commodity'>
-                                                <option value="crudeoil">Crude Oil</option>
                                                 <option value="price">Price</option>
+                                                <option value="crudeoil">Crude Oil</option>
+                                                {/* <option value="price">Price</option> */}
                                                 <option value="distillates">Distillates</option>
                                                 <option value="coal">Coal</option>
                                                 <option value="grain">Grain</option>
@@ -119,6 +115,7 @@ class DashboardForm extends Component {
                                                 name='price'
                                                 className='form-control form-control-sm'
                                                 placeholder="Enter price"
+                                                type='number'
                                                 id='price'
                                                 onChange={handleChange}
                                             />
@@ -130,6 +127,7 @@ class DashboardForm extends Component {
                                         <div className="form-group form-group-inline d-flexbox">
                                             <Field
                                                 name='deliveryDate'
+                                                type='date'
                                                 className='form-control form-control-sm'
                                                 placeholder='Enter delivery date'
                                                 id='deliveryDate'
